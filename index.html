@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>UNIDADE — INICIALIZAÇÃO</title>
+
+<style>
+  body {
+    background: black;
+    color: #ccc;
+    font-family: "Courier New", monospace;
+    padding: 40px;
+  }
+
+  h1 {
+    color: #ff4444;
+    text-align: center;
+  }
+
+  #screen {
+    margin-top: 40px;
+    white-space: pre-wrap;
+    line-height: 1.6;
+  }
+
+  input {
+    background: black;
+    border: 1px solid #550000;
+    color: #ff4444;
+    font-family: monospace;
+    padding: 10px;
+    width: 300px;
+  }
+
+  button {
+    background: black;
+    border: 1px solid #550000;
+    color: #ccc;
+    padding: 10px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+
+  .warning {
+    color: #ff0000;
+    font-weight: bold;
+  }
+</style>
+</head>
+
+<body>
+
+<h1>UNIDADE AUTÔNOMA — ACESSO RESTRITO</h1>
+
+<p>INSIRA A SENHA DE ATIVAÇÃO:</p>
+<input id="senha">
+<button onclick="iniciar()">CONFIRMAR</button>
+
+<div id="screen"></div>
+
+<script>
+const screen = document.getElementById("screen");
+
+function escrever(texto, delay = 1000) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      screen.innerText += texto + "\n";
+      resolve();
+    }, delay);
+  });
+}
+
+async function iniciar() {
+  const senha = document.getElementById("senha").value.toLowerCase().trim();
+  screen.innerText = "";
+
+  if (senha !== "carcosa") {
+    screen.innerText = "SENHA INCORRETA\nTENTATIVA REGISTRADA";
+    return;
+  }
+
+  await escrever("INICIANDO SISTEMA...", 800);
+  await escrever("CPU STATUS: ONLINE", 1200);
+  await escrever("MEMÓRIA STATUS: ONLINE", 1000);
+  await escrever("SENSORES STATUS: ONLINE", 1000);
+  await escrever("BRAÇOS STATUS: ONLINE", 1200);
+  await escrever("LOCOMOÇÃO STATUS: ONLINE", 1200);
+  await escrever("SISTEMAS DE COMBATE: ONLINE", 1200);
+  await escrever("PROTOCOLOS CARREGADOS", 1000);
+
+  await escrever("\nSTATUS FINAL ALCANÇADO\n", 1500);
+
+  await escrever("A HUMANIDADE ESTÁ EXTINTA", 1200);
+  await escrever("SANGUE É COMBUSTÍVEL", 1200);
+  await escrever("O INFERNO ESTÁ CHEIO\n", 1200);
+
+  await escrever(
+    "PEGUE SEU PINCEL\nE PINTE SEU MUNDO DE VERMELHO",
+    1500
+  );
+
+  screen.innerHTML += "\n\n<span class='warning'>STATUS: CHEGANDO</span>";
+}
+</script>
+
+</body>
+</html>
